@@ -4,7 +4,7 @@ public class Rss {
     /*
     the broadcast of the zoo. tells the observers the very interesting news about the animals. its a singleton.
      */
-    private ArrayList<ZooObserver> subscribedList = new ArrayList<>();
+    private ArrayList<ZooObserver> zooSubscription = new ArrayList<>();
     private static Rss instance = new Rss();
 
     private Rss() {
@@ -20,20 +20,20 @@ public class Rss {
         /*
         add a new observer to the subscribed list.
          */
-        subscribedList.add(observer);
+        zooSubscription.add(observer);
     }
     public void removeObserver(ZooObserver observer){
         /*
         removes an observer from the subscribed list.
          */
-        subscribedList.remove(observer);
+        zooSubscription.remove(observer);
     }
     public void letKnow(String action) {
         /*
         tell the exciting news about the zoo to all of the observers.
          */
         System.out.println("Notifying observers:");
-        for(ZooObserver observer : subscribedList){
+        for(ZooObserver observer : zooSubscription){
             observer.letKnow(action);
         }
     }

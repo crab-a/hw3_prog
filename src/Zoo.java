@@ -3,13 +3,19 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 
 public class Zoo {
+    /*
+    one of a kind zoo, may contains infinite animals, a singleton
+     */
     private static Zoo zoo =null;
-    public static ArrayList<Animal> animalsList= new ArrayList<>();
-    LinkedHashMap<String, Integer> uniqueAnimals = new LinkedHashMap<>();
-    private static int hunger=3;
-    private static int happiness=2;
-    private Rss zooRss = Rss.getInstance();
+    private static ArrayList<Animal> animalsList;
+    LinkedHashMap<String, Integer> uniqueSpecies;
+    private static int hunger;
+    private static int happiness;
+    private final Rss zooRss;
     public static Zoo getInstance() {
+        /*
+        returns the only instance of the zoo.
+         */
         if(zoo ==null)
             zoo = new Zoo();
         else
@@ -18,65 +24,72 @@ public class Zoo {
     }
     private Zoo(){
         System.out.println("Creating zoo...");
+        animalsList= new ArrayList<>();
+        uniqueSpecies = new LinkedHashMap<>();
+        zooRss = Rss.getInstance();
+        hunger=3;
+        happiness=2;
     }
-
-    public void addObserver(ZooObserver observer) {
-        zooRss.addObserver(observer);
+    public void addAnimal(Animal animal) {
+        /*
+        new animal in the zoo, how exciting!
+        update all subscribers
+        @param: animal: the new animal in the zoo
+         */
+        uniqueSpecies.put(animal.getSpecies(),(uniqueSpecies.getOrDefault((animal.getSpecies()),0)+1));
+        animalsList.add(animal);
+        update(capitalize(animal.getSpecies()));
     }
 
     public void showAnimalsInfo() {
+        /*
+        print all current information about the animals in the zoo:
+        total count
+        each spices count
+        happiness level and hunger level
+         */
         System.out.println("The zoo contains total of "+animalsList.size()+" animals:");
-        countAnimals();
+        printAnimalCount();
         System.out.println("Happiness level: "+happiness);
         if (happiness<3)
             System.out.println("The animals are not happy, you should watch them...");
         else
-            System.out.println("The animals are very happy, keep working hard…");
+            System.out.println("The animals are very happy, keep working hard...");
         System.out.println("Hunger level: "+hunger);
         if(hunger>3)
-            System.out.println("The animals are hungry, you should feed them…");
+            System.out.println("The animals are hungry, you should feed them...");
     }
-
-    private void countAnimals() {
-        Set<String> animals = uniqueAnimals.keySet();
+    private void printAnimalCount() {
+        Set<String> animals = uniqueSpecies.keySet();
         for (String animal : animals){
-            System.out.println(("- "+capitalize(animal)+": "+ uniqueAnimals.get(animal)));
+            System.out.println(("- "+capitalize(animal)+": "+ uniqueSpecies.get(animal)));
         }
     }
 
     public void feedAnimals() {
+        /*
+        feed the animals
+        update all subscribers
+         */
         for (Animal animal: animalsList){
             System.out.println("The "+animal.getSpecies()+" is eating "+animal.getFood()+"...");
-            decreaseHunger();
         }
-        letKnow("fed");
+        decreaseHunger();
+        update("fed");
     }
-
     public void watchAnimals() {
+        /*
+        the animals put up a show, how sweet.
+        update all subscribers
+         */
         for (Animal animal: animalsList){
             System.out.println("The "+animal.getSpecies()+" is "+animal.play()+"...");
-            increaseHappiness();
-            increaseHunger();
         }
-        letKnow("watch");
+        increaseHunger();
+        increaseHappiness();
+        update("watch");
     }
 
-    private String capitalize(String word) {
-        return word.substring(0, 1).toUpperCase() +word.substring(1);
-    }
-
-    public void addAnimal(Animal animal) {
-        if (!animalsList.contains(animal))
-            uniqueAnimals.put(animal.getSpecies(),0);
-        animalsList.add(animal);
-        uniqueAnimals.put(animal.getSpecies(),(uniqueAnimals.get(animal.getSpecies())+1));
-
-        letKnow(capitalize(animal.getSpecies()));
-    }
-
-    private void letKnow(String action) {
-        zooRss.letKnow(action);
-    }
     private void decreaseHunger(){
         if(hunger>1)
             hunger--;
@@ -89,7 +102,26 @@ public class Zoo {
         if(happiness<5)
             happiness++;
     }
+    private void update(String action) {
+        zooRss.letKnow(action);
+    }
+    public void addObserver(ZooObserver observer) {
+        /*
+        add the observer as subscriber to the zoo RSS
+        @param: observer: the new subscriber to the RSS list
+         */
+        zooRss.addObserver(observer);
+    }
     public void removeObserver(ZooObserver observer) {
+        /*
+        remove the observer from the RSS broadcast list
+        we are sorry to see you leave
+        @param: observer: the person who want to unsubscribe from the RSS list
+         */
         zooRss.removeObserver(observer);
+    }
+
+    private String capitalize(String word) {
+        return word.substring(0, 1).toUpperCase() +word.substring(1);
     }
 }
