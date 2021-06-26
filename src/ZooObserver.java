@@ -1,6 +1,6 @@
 public class ZooObserver {
     private String name;
-
+    private Rss obsRss= Rss.getInstance();
     public ZooObserver(String name) {
         this.name = name;
     }
@@ -20,5 +20,8 @@ public class ZooObserver {
             default:
                 System.out.println("[" + this.name + "] " + action + " has been added to the zoo!");
         }
+    }
+    public void unsubscribe(){
+        obsRss.removeObserver(this);
     }
 }
