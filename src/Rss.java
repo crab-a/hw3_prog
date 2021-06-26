@@ -16,7 +16,7 @@ public class Rss {
     public void removeObserver(ZooObserver observer){
         subscribedList.remove(observer);
     }
-    private void letKnow(String action) {
+    public void letKnow(String action) {
         System.out.println("Notifying observers:");
         for(ZooObserver observer : subscribedList){
             observer.letKnow(action);

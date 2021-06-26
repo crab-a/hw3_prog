@@ -4,9 +4,9 @@ public class Zoo {
     private static Zoo zoo =null;
     public static ArrayList<Animal> animalsList= new ArrayList<>();
     public static ArrayList<Animal> uniqueAnimals= new ArrayList<>();
-    public static ArrayList<ZooObserver> subscribedList= new ArrayList<>();
     private static int hunger=3;
     private static int happiness=2;
+    private Rss zooRss = Rss.getInstance();
     public static Zoo getInstance() {
         if(zoo ==null)
             zoo = new Zoo();
@@ -19,7 +19,7 @@ public class Zoo {
     }
 
     public void addObserver(ZooObserver observer) {
-        subscribedList.add(observer);
+        zooRss.addObserver(observer);
     }
 
     public void showAnimalsInfo() {
@@ -61,10 +61,7 @@ public class Zoo {
     }
 
     private void letKnow(String action) {
-        System.out.println("Notifying observers:");
-        for(ZooObserver observer : subscribedList){
-            observer.letKnow(action);
-        }
+        zooRss.letKnow(action);
     }
     private void decreaseHunger(){
         if(hunger>1)
@@ -79,6 +76,6 @@ public class Zoo {
             happiness++;
     }
     public void removeObserver(ZooObserver observer) {
-        subscribedList.remove(observer);
+        zooRss.removeObserver(observer);
     }
 }
