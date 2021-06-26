@@ -1,5 +1,7 @@
 public class UnicornFactory extends AnimalFactory {
-    public UnicornFactory(){
-
+    public UnicornFactory(){}
+    @Override
+    public Animal createAnimal(){
+        return new Unicorn();
     }
 }
