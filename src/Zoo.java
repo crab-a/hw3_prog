@@ -63,9 +63,9 @@ public class Zoo {
 
     public void addAnimal(Animal animal) {
         if (!animalsList.contains(animal))
-            uniqueAnimals.put(animal.getAnimal(),0);
+            uniqueAnimals.put(animal.getSpecies(),0);
         animalsList.add(animal);
-        uniqueAnimals.put(animal.getAnimal(),uniqueAnimals.get(animal.getAnimal()) + 1);
+        uniqueAnimals.put(animal.getSpecies(),uniqueAnimals.get(animal.getSpecies()) + 1);
 
         letKnow(animal.getSpecies());
     }
