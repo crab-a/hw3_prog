@@ -9,16 +9,3 @@ public class Monkey extends Animal{
         super("monkey", "a banana", "hanging on trees");
     }
 }
-class MonkeyFactory extends AnimalFactory{
-    /*
-    a factory for creating of new monkeys. extends the super class AnimalFactory
-     */
-    public MonkeyFactory(){}
-    @Override
-    public Animal createAnimal(){
-        /*
-        creates a new monkey
-         */
-        return new Monkey();
-    }
-}
