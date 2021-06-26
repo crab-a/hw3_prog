@@ -36,7 +36,7 @@ public class Zoo {
 
     public void feedAnimals() {
         for (Animal animal: animalsList){
-            System.out.println("The "+animal.getName+" is eating"+animal.gefood+"...");
+            System.out.println("The "+animal.getName+" is eating"+animal.getfood+"...");
             decreaseHunger();
         }
         letKnow("fed");
