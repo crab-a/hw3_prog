@@ -3,7 +3,7 @@ public class ZooObserver {
     an observer who gets interesting news about the zoo
      */
     private String name;
-
+    private Rss obsRss= Rss.getInstance();
     public ZooObserver(String name) {
         /*
         the constructor. initialize a new observer and give him his name
@@ -33,5 +33,8 @@ public class ZooObserver {
             default:
                 System.out.println("[" + this.name + "] " + action + " has been added to the zoo!");
         }
+    }
+    public void unsubscribe(){
+        obsRss.removeObserver(this);
     }
 }
