@@ -37,7 +37,7 @@ public class Zoo {
 
     public void feedAnimals() {
         for (Animal animal: animalsList){
-            System.out.println("The "+animal.getAnimal()+" is eating"+animal.getFood()+"...");
+            System.out.println("The "+animal.getSpecies()+" is eating"+animal.getFood()+"...");
             decreaseHunger();
         }
         letKnow("fed");
@@ -45,7 +45,7 @@ public class Zoo {
 
     public void watchAnimals() {
         for (Animal animal: animalsList){
-            System.out.println("The "+animal.getAnimal()+" is "+animal.play()+"...");
+            System.out.println("The "+animal.getSpecies()+" is "+animal.play()+"...");
             increaseHappiness();
             increaseHunger();
         }
@@ -57,7 +57,7 @@ public class Zoo {
             uniqueAnimals.add(animal);
         animalsList.add(animal);
 
-        letKnow(animal.getAnimal());
+        letKnow(animal.getSpecies());
     }
 
     private void letKnow(String action) {

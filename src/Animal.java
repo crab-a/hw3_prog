@@ -1,14 +1,17 @@
 public abstract class Animal {
     private String food;
     private String activity;
-    private String animal;
+    private String species;
     public Animal(String animal, String food, String activity){
-        this.animal = animal;
+        /*
+        the constructor.
+         */
+        this.species = animal;
         this.food = food;
         this.activity = activity;
     }
-    public String getAnimal(){
-        return this.animal;
+    public String getSpecies(){
+        return this.species;
     }
     public String getFood(){
         return this.food;
