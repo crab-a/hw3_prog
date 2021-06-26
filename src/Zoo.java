@@ -40,13 +40,13 @@ public class Zoo {
     private void countAnimals() {
         Set<String> animals = uniqueAnimals.keySet();
         for (String animal : animals){
-            System.out.println(("- "+animal+": "+ uniqueAnimals.get(animal)));
+            System.out.println(("- "+capitalize(animal)+": "+ uniqueAnimals.get(animal)));
         }
     }
 
     public void feedAnimals() {
         for (Animal animal: animalsList){
-            System.out.println("The "+animal.getSpecies()+" is eating"+animal.getFood()+"...");
+            System.out.println("The "+animal.getSpecies()+" is eating "+animal.getFood()+"...");
             decreaseHunger();
         }
         letKnow("fed");
@@ -61,13 +61,17 @@ public class Zoo {
         letKnow("watch");
     }
 
+    private String capitalize(String word) {
+        return word.substring(0, 1).toUpperCase() +word.substring(1);
+    }
+
     public void addAnimal(Animal animal) {
         if (!animalsList.contains(animal))
             uniqueAnimals.put(animal.getSpecies(),0);
         animalsList.add(animal);
-        uniqueAnimals.put(animal.getSpecies(),uniqueAnimals.get(animal.getSpecies()) + 1);
+        uniqueAnimals.put(animal.getSpecies(),(uniqueAnimals.get(animal.getSpecies())+1));
 
-        letKnow(animal.getSpecies());
+        letKnow(capitalize(animal.getSpecies()));
     }
 
     private void letKnow(String action) {

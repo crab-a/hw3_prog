@@ -6,6 +6,6 @@ public class Zebra extends Animal{
         /*
         initialize the new zebra by calling the animal (super class) constructor
          */
-        super("Zebra", "grass", "running");
+        super("zebra", "grass", "running");
     }
 }

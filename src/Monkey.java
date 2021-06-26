@@ -6,6 +6,6 @@ public class Monkey extends Animal{
         /*
         initialize the new monkey by calling the animal (super class) constructor
          */
-        super("Zebra", "a banana", "hanging on trees");
+        super("monkey", "a banana", "hanging on trees");
     }
 }
