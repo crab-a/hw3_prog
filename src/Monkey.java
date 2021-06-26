@@ -1,5 +1,5 @@
 public class Monkey extends Animal{
     public Monkey(){
-        super("a banana", "hanging on trees");
+        super("Zebra", "a banana", "hanging on trees");
     }
 }
