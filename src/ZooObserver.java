@@ -1,15 +1,28 @@
 public class ZooObserver {
+    /*
+    an observer who gets interesting news about the zoo
+     */
     private String name;
 
     public ZooObserver(String name) {
+        /*
+        the constructor. initialize a new observer and give him his name
+        @param: name: the name of the observer
+         */
         this.name = name;
     }
 
     public String getName() {
+        /*
+        return the name of the observer
+         */
         return this.name;
     }
 
     public void letKnow(String action) {
+        /*
+        receive the news about the zoo and print it.
+         */
         switch (action) {
             case ("fed"):
                 System.out.println("[" + this.name + "] " + "The animals are being fed");
