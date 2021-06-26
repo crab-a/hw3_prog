@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Zoo {
     private static Zoo zoo =null;
     public static ArrayList<Animal> animalsList= new ArrayList<>();
+    public static ArrayList<Animal> uniqueAnimals= new ArrayList<>();
     public static ArrayList<ZooObserver> subscribedList= new ArrayList<>();
     private static int hunger=3;
     private static int happiness=2;
@@ -52,6 +53,8 @@ public class Zoo {
     }
 
     public void addAnimal(Animal animal) {
+        if (!animalsList.contains(animal))
+            uniqueAnimals.add(animal);
         animalsList.add(animal);
         letKnow(animal.getName);
     }
