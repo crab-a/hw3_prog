@@ -4,8 +4,8 @@ public class Rss {
     /*
     the broadcast of the zoo. tells the observers the very interesting news about the animals. its a singleton.
      */
-    private ArrayList<ZooObserver> zooSubscription = new ArrayList<>();
-    private static Rss instance = new Rss();
+    private final ArrayList<ZooObserver> zooSubscription = new ArrayList<>();
+    private static final Rss instance = new Rss();
 
     private Rss() {
     }
