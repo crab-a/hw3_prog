@@ -1,3 +1,6 @@
 public interface Observer {
-    public void letKnow(String info);
+    /*
+    design  pattern Observer.
+     */
+    void letKnow(String info);
 }
