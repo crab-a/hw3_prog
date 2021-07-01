@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
-public class Zoo {
+public class Zoo implements Observable {
     /*
     one of a kind zoo, may contains infinite animals, a singleton
      */
@@ -102,17 +102,20 @@ public class Zoo {
         if(happiness<5)
             happiness++;
     }
-    private void update(String action) {
+    @Override
+    public void update(String action) {
         zooRss.letKnow(action);
     }
-    public void addObserver(ZooObserver observer) {
+    @Override
+    public void addObserver(Observer observer) {
         /*
         add the observer as subscriber to the zoo RSS
         @param: observer: the new subscriber to the RSS list
          */
         zooRss.addObserver(observer);
     }
-    public void removeObserver(ZooObserver observer) {
+    @Override
+    public void removeObserver(Observer observer) {
         /*
         remove the observer from the RSS broadcast list
         we are sorry to see you leave

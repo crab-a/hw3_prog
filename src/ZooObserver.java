@@ -1,4 +1,4 @@
-public class ZooObserver {
+public class ZooObserver implements Observer {
     /*
     an observer who gets interesting news about the zoo
      */
@@ -17,7 +17,7 @@ public class ZooObserver {
          */
         return this.name;
     }
-
+    @Override
     public void letKnow(String action) {
         /*
         receive the news about the zoo and print it.
